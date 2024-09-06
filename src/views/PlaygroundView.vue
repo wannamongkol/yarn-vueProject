@@ -10,6 +10,8 @@ const value = ref("test");
 watch(value, (newValue, oldValue) => {
     if (newValue) {
         logref.value = "update";
+    } else if (newValue.length == 0) {
+        logref.value = "please fill input";
     } else {
         logref.value = "do something";
     }
@@ -22,7 +24,10 @@ watch(value, (newValue, oldValue) => {
         <label class="block my-4 text-xl font-bold"
             >current value : {{ value }} | watch log : {{ logref }}</label
         >
-        <input class="shadow-xl w-1/2 h-10 rounded-xl" v-model="value" />
+        <input
+            class="shadow-xl w-1/2 h-10 rounded-xl border-double border-4 text-slate-800 pl-4"
+            v-model="value"
+        />
     </div>
 </template>
 
