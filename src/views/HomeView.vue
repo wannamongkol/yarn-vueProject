@@ -2,6 +2,7 @@
 import { reactive, ref } from "vue";
 import { RouterLink } from "vue-router";
 import CustomModal from "../components/CustomModal.vue";
+import CustomInput from "../components/CustomInput.vue";
 const rememberValue = ref(true);
 
 // const dataWeeklyLimit = ref<any>([ { "day_of_week": "Mon", "start_time": "06:00:00", "end_time": "09:01:00", "enable_limit": false }, { "day_of_week": "Mon", "start_time": "00:00:00", "end_time": "00:01:00", "enable_limit": false }, { "day_of_week": "Tue", "start_time": "16:00:00", "end_time": "19:30:00", "enable_limit": false }, { "day_of_week": "Wed", "start_time": "17:55:00", "end_time": "17:58:00", "enable_limit": false }, { "day_of_week": "Thu", "start_time": "18:00:00", "end_time": "23:52:00", "enable_limit": false }, { "day_of_week": "Fri", "start_time": "13:00:00", "end_time": "19:15:00", "enable_limit": false }, { "day_of_week": "Sat", "start_time": "18:00:00", "end_time": "22:01:00", "enable_limit": false }, { "day_of_week": "Sun", "start_time": "15:00:00", "end_time": "21:01:00", "enable_limit": false } ]);
