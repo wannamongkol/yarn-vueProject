@@ -2,15 +2,10 @@
 import { reactive, ref } from "vue";
 import { RouterLink } from "vue-router";
 import CustomModal from "../components/CustomModal.vue";
-import CustomInput from "../components/CustomInput.vue";
 import CustomDivider from "../components/CustomDivider.vue";
-const rememberValue = ref(true);
+const rememberValue = ref<boolean>(true);
+const isModalVisible = ref<boolean>(false);
 
-// const dataWeeklyLimit = ref<any>([ { "day_of_week": "Mon", "start_time": "06:00:00", "end_time": "09:01:00", "enable_limit": false }, { "day_of_week": "Mon", "start_time": "00:00:00", "end_time": "00:01:00", "enable_limit": false }, { "day_of_week": "Tue", "start_time": "16:00:00", "end_time": "19:30:00", "enable_limit": false }, { "day_of_week": "Wed", "start_time": "17:55:00", "end_time": "17:58:00", "enable_limit": false }, { "day_of_week": "Thu", "start_time": "18:00:00", "end_time": "23:52:00", "enable_limit": false }, { "day_of_week": "Fri", "start_time": "13:00:00", "end_time": "19:15:00", "enable_limit": false }, { "day_of_week": "Sat", "start_time": "18:00:00", "end_time": "22:01:00", "enable_limit": false }, { "day_of_week": "Sun", "start_time": "15:00:00", "end_time": "21:01:00", "enable_limit": false } ]);
-
-const isModalVisible: Ref<Boolean> = ref(false);
-
-// Methods
 const openModal = () => {
     isModalVisible.value = true;
 };
@@ -21,7 +16,12 @@ const closeModal = () => {
     isModalVisible.value = false;
 };
 
-const information = reactive({
+interface Information {
+    username: string;
+    password: string;
+}
+
+const information = reactive<Information>({
     username: "",
     password: "",
 });
@@ -31,14 +31,18 @@ const switchRememberVal = () => {
 };
 </script>
 <template>
-    <!-- <TestCom class="ps-2" id="week" :show-limit="'week'" :list-limit-week="dataWeeklyLimit"  /> -->
     <div class="container-fluid mx-auto">
-        <div class="flex">
-            <div class="lg:basis-3/5 bg-slate-200 p-4 min-h-screen">
-                Img mock {{ information.username + information.password }}
+        <div class="flex flex-row min-h-screen">
+            <div class="basis-2/5 lg:basis-3/5 bg-slate-200">
+                <img
+                    src="../assets/mockImg.png"
+                    class="w-full h-full object-cover"
+                    alt="mock img "
+                />
             </div>
 
-            <div class="lg:basis-2/5 bg-white min-h-screen">
+            <!-- right login form -->
+            <div class="basis-3/5 lg:basis-2/5 bg-white min-h-screen">
                 <div
                     class="flex flex-col items-center justify-center min-h-screen"
                 >
@@ -60,33 +64,34 @@ const switchRememberVal = () => {
                             </h2>
                         </div>
                     </div>
-
-                    <div class="flex flex-col items-center mt-4 p-4">
+                    <!-- login -->
+                    <div
+                        class="flex flex-col items-center mt-4 p-4 w-full max-w-md"
+                    >
                         <input
                             type="text"
                             placeholder="Username"
                             v-model="information.username"
-                            class="border-b-2 border-gray-300 w-96 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 my-2"
+                            class="border-b-2 border-gray-300 w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 my-2"
                         />
                         <input
                             type="password"
                             placeholder="Password"
                             v-model="information.password"
-                            class="border-b-2 border-gray-300 w-96 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 my-2"
+                            class="border-b-2 border-gray-300 w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 my-2"
                         />
+                        <!-- below line -->
                         <div class="flex flex-row justify-between w-full mt-2">
-                            <div class="flex salign-center">
+                            <div
+                                class="flex align-center"
+                                @click="switchRememberVal"
+                            >
                                 <input
                                     type="checkbox"
                                     class="mr-2 accent-blue-500"
                                     :checked="rememberValue"
-                                    @click="switchRememberVal"
                                 />
-                                <span
-                                    class="text-blue-500"
-                                    @click="switchRememberVal"
-                                    >Remember me</span
-                                >
+                                <span class="text-blue-500">Remember me</span>
                             </div>
                             <RouterLink to="/forgetPassword">
                                 <a class="text-blue-500">Forgot Password?</a>
@@ -99,6 +104,11 @@ const switchRememberVal = () => {
                             login
                         </button>
                         <CustomDivider middle="or" />
+                        <RouterLink to="/playground"
+                            ><a class="text-slate-500 hover:text-blue-600"
+                                >Playground</a
+                            ></RouterLink
+                        >
                     </div>
                 </div>
             </div>
@@ -110,7 +120,13 @@ const switchRememberVal = () => {
         @close="closeModal"
         @keydown.esc="closeModal"
     >
-        <div class="bg-slate-500 p-10"></div>
+        <div class="bg-slate-500 flex flex-col text-center">
+            <!-- <label class="font-bold">ChocoCDP AUthendicator</label>
+            <label
+                >ChocoCDP เพิ่มความปลอดภัยบัญชีของคุณ<br />ด้วยขั้นตอนยืนยันตัวตน
+                2 ขั้น (Two-Factor AUthendication)</label
+            > -->
+        </div>
         <!-- <button @click="closeModal" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
         Close Modal </button> -->
     </CustomModal>
