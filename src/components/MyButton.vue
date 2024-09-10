@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { defineEmits, ref, defineProps } from "vue";
 interface Props {
-    title: string;
+    title: ClickA;
 }
 const props = defineProps<Props>();
 
@@ -15,6 +15,8 @@ type ClickPayload = {
     message: string;
     timestamp: number;
 };
+
+type ClickA = string | number | NULL;
 
 const emit = defineEmits<{ (event: myButton, payload: ClickPayload) }>();
 

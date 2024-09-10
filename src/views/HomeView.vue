@@ -103,7 +103,7 @@ const switchRememberVal = () => {
                         >
                             login
                         </button>
-                        <CustomDivider middle="or" />
+                        <CustomDivider middle="" />
                         <RouterLink to="/playground"
                             ><a class="text-slate-500 hover:text-blue-600"
                                 >Playground</a

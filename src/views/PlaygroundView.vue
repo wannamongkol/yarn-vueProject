@@ -11,11 +11,18 @@
         />
 
         <MyButton @myButton="emitHandler" :title="btnTitle" />
+        <br />
+        <!-- <a>V-For Testing</a>
+        <ul>
+            <li v-for="(city, index) in cities" :key="index">
+                {{ city }} {{ index }}
+            </li>
+        </ul> -->
     </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from "vue";
+import { reactive, ref, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import MyButton from "../components/MyButton.vue";
 const route = useRoute();
@@ -23,6 +30,18 @@ const id = route.params.id;
 const logref = ref<string>("NULL");
 const value = ref<string>("test");
 const btnTitle = ref<string>("Click me");
+const cities = ref<string[]>([
+    "New York",
+    "Los Angeles",
+    "Chicago",
+    "Houston",
+    "Miami",
+    "San Francisco",
+    "Boston",
+    "Seattle",
+    "Denver",
+    "Atlanta",
+]);
 
 watch(value, (newValue: string, oldValue: string) => {
     if (newValue) {
